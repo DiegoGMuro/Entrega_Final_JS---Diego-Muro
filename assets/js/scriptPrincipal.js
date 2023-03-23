@@ -25,6 +25,21 @@ ciudadSelect.style.margin = '0 auto';
 
 padre.appendChild(ciudadSelect);
 
+
+// Se renderiza la imagen de la ciudad seleccinada 
+const contenedorImagen = document.createElement('div');
+padre.appendChild(contenedorImagen);
+
+ciudadSelect.addEventListener('change', function() {
+    const ciudadSeleccionada = ciudadSelect.value;
+    const imagen = document.createElement('img');
+    imagen.src = `assets/js/${ciudadSeleccionada}.jpg `;
+    contenedorImagen.innerHTML = '';
+    imagen.classList.add("imagen-atractiva");
+    contenedorImagen.appendChild(imagen);
+});
+
+
 // Evento de ingresar al sistema con SUBMIT
 psw.addEventListener("submit", function (event) {
     event.preventDefault(); // Evita el envío del formulario por defecto
@@ -53,13 +68,14 @@ psw.addEventListener("submit", function (event) {
         let carrito = [];
         const agregarCarrito = () => {
             const ciudad = ciudadSelect.value;
+            const usuario = document.getElementById("usuario").value
             const pasajeros = document.getElementById("pasajeros").value;
             const dias = document.getElementById("dias").value;
             const tarifa = ciudades.find((c) => c.ciudad === ciudad).tarifa;
             const precios = tarifa * pasajeros;
             const incrementos = incremEstadia(dias);
             const total = precios * (1 + incrementos);
-            const item = { ciudad, pasajeros, dias, precios, incrementos, total };
+            const item = { usuario, ciudad, pasajeros, dias, precios, incrementos, total };
             carrito.push(item);
             localStorage.setItem("carrito", JSON.stringify(carrito));
             updatecarrito();
@@ -69,12 +85,12 @@ psw.addEventListener("submit", function (event) {
             const carritoDiv = document.getElementById("carrito");
             //Acumulo los ITEMS de la funcion "agregarCarrito" con REDUCE
             const table = carrito.reduce((acumulado, item) => {
-                const fila = `<tr><td>${item.ciudad}</td><td>${item.pasajeros}</td><td>${item.dias}</td><td>$${item.precios.toLocaleString('es-AR')}</td><td>${item.incrementos * 100}%</td><td>$${item.total.toLocaleString('es-AR')}</td></tr>`;
+                const fila = `<tr><td>${item.usuario}</td><td>${item.ciudad}</td><td>${item.pasajeros}</td><td>${item.dias}</td><td>$${item.precios.toLocaleString('es-AR')}</td><td>${item.incrementos * 100}%</td><td>$${item.total.toLocaleString('es-AR')}</td></tr>`;
                 return acumulado + fila;
-            }, "<table><tr><th>Ciudad</th><th>Pasajeros</th><th>Días de estancia</th><th>Precio base</th><th>Incremento</th><th>Total</th></tr>");
+            }, "<table><tr><th>Usuario</th><th>Ciudad</th><th>Pasajeros</th><th>Días de estancia</th><th>Precio base</th><th>Incremento</th><th>Total</th></tr>");
             //Acumulo el TOTAL GENERAL de los ITEMS de la funcion "agregarCarrito" con REDUCE
             const totalprecios = carrito.reduce((acumulado, item) => acumulado + item.total, 0);
-            const tablaConTotal = `${table}<tr><td></td><td></td><td></td><td></td><td></td><td><strong style="font-size:larger;color: blue;">Total general:</strong><span style="color: blue;"> $${totalprecios.toLocaleString('es-AR')}</td></tr></table>`;
+            const tablaConTotal = `${table}<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><strong style="font-size:larger;color: blue;">Total general:</strong><span style="color: blue;"> $${totalprecios.toLocaleString('es-AR')}</td></tr></table>`;
             carritoDiv.innerHTML = tablaConTotal;
         };
         // Finalizo la cotizacion y limpio la tabla

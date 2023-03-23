@@ -176,6 +176,7 @@ footer {
     background: linear-gradient(to right, rgb(146, 145, 144), rgb(59, 58, 58));
     font-weight: bold;
     margin-bottom: 5px;
+    
 }
 
 footer a {
@@ -340,6 +341,16 @@ input[type="number"] {
     border: none;
     width: 50px;
 }
+
+input[type="text"] {
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    width: 150px;
+    text-align: center;
+}
+
 
 button {
     margin-top: 20px;
@@ -525,3 +536,43 @@ th {
     background-color: #db1c1c;
     }
 
+/*-----------------Imagen del seleccionable---------------------------------------*/
+
+/* Estilo para las imágenes */
+img {
+border: 2px solid gray; 
+display: block; 
+margin: 0 auto; 
+max-width: 500px; 
+height: auto;
+}
+
+
+.imagen-atractiva {
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.imagen-atractiva:hover {
+    transform: scale(1.2);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+
+}
+
+/* Estilo para el contenedor de la imagen */
+div {
+margin-top: 20px; 
+text-align: center; 
+}
+
+/*-------------- Espacio entre Resultado e Ingreso de contrasena-----------------------*/
+
+#resultado {
+margin-bottom: 7px; /* Reduzco el margen inferior del elemento con id "resultado" */
+}
+
+#psw {
+margin-top: 5px; /* Reduzco el margen superior del formulario con id "psw" */
+}
