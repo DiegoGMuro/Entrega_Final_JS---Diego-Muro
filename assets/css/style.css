@@ -13,7 +13,7 @@
 }
 
 .alinear_destino {
-    margin-left: 100px;
+    text-align: center;
 }
 
 .color_letra .h1 {
@@ -413,6 +413,7 @@ td {
 
 th {
     background-color: #180755;
+    
 }
 
 /* Estilos responsivos */
