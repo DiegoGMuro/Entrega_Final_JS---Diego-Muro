@@ -14,23 +14,31 @@ const ciudades = [
 
 ];
 
-const padre = document.getElementById('ciudades');
 
 /* const ciudadSelect = document.createElement('select');
 for (let index = 0; index < ciudades.length; index++) {
     ciudadSelect.innerHTML += `<option value="${ciudades[index].ciudad}">${ciudades[index].ciudad}</option>`;
-}
- */
-const ciudadSelect = document.createElement('select');
+}*/
+ 
+
+/*  const ciudadSelect = document.createElement('select');
 for (const ciudad of ciudades) {
     ciudadSelect.innerHTML += `<option value="${ciudad.ciudad}">${ciudad.ciudad}</option>`;
+} */
+
+const padre = document.getElementById('ciudades');
+
+const ciudadSelect = document.createElement('select');
+for (const ciudad of ciudades) {
+    const option = document.createElement('option');
+    option.text = `${ciudad.ciudad}`;
+    ciudadSelect.appendChild(option);
 }
 
+padre.appendChild(ciudadSelect);
 
 ciudadSelect.style.display = 'block';
 ciudadSelect.style.margin = '0 auto';
-
-padre.appendChild(ciudadSelect);
 
 
 // Se renderiza la imagen de la ciudad seleccinada 
@@ -39,8 +47,9 @@ padre.appendChild(contenedorImagen);
 
 ciudadSelect.addEventListener('change', function () {
     const ciudadSeleccionada = ciudadSelect.value;
+    const rutaImagen = `assets/js/${ciudadSeleccionada}.jpg`;
     const imagen = document.createElement('img');
-    imagen.src = `assets/js/${ciudadSeleccionada}.jpg `;
+    imagen.src = rutaImagen;
     contenedorImagen.innerHTML = '';
     imagen.classList.add("imagen-atractiva");
     contenedorImagen.appendChild(imagen);

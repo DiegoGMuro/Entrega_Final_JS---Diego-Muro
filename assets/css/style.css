@@ -596,7 +596,8 @@ margin-top: 5px; /* Reduzco el margen superior del formulario con id "psw" */
     font-size: 24px;
     color: #ddda0b;
     font-weight: bold;
-    margin: 0;
+    margin: 0vh;
     padding: 10px;
+    margin-right: 5vh ;
     border-radius: 5px;
 }
