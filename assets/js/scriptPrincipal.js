@@ -16,10 +16,17 @@ const ciudades = [
 
 const padre = document.getElementById('ciudades');
 
-const ciudadSelect = document.createElement('select');
+/* const ciudadSelect = document.createElement('select');
 for (let index = 0; index < ciudades.length; index++) {
     ciudadSelect.innerHTML += `<option value="${ciudades[index].ciudad}">${ciudades[index].ciudad}</option>`;
 }
+ */
+const ciudadSelect = document.createElement('select');
+for (const ciudad of ciudades) {
+    ciudadSelect.innerHTML += `<option value="${ciudad.ciudad}">${ciudad.ciudad}</option>`;
+}
+
+
 ciudadSelect.style.display = 'block';
 ciudadSelect.style.margin = '0 auto';
 
@@ -85,9 +92,9 @@ psw.addEventListener("submit", function (event) {
             const carritoDiv = document.getElementById("carrito");
             //Acumulo los ITEMS de la funcion "agregarCarrito" con REDUCE
             const table = carrito.reduce((acumulado, item) => {
-                const fila = `<tr><td>${item.usuario}</td><td>${item.ciudad}</td><td>${item.pasajeros}</td><td>${item.dias}</td><td>$${item.precios.toLocaleString('es-AR')}</td><td>${item.incrementos * 100}%</td><td>$${item.total.toLocaleString('es-AR')}</td><td><button class="eliminar-ciudad" data-ciudad="${item.ciudad}">X</button></td></tr>`;
+                const fila = `<tr><td>${item.usuario}</td><td>${item.ciudad}</td><td>${item.pasajeros}</td><td>${item.dias}</td><td>$${item.precios.toLocaleString('es-AR')}</td><td>${item.incrementos * 100}%</td><td>$${item.total.toLocaleString('es-AR')}</td><td><button class="eliminar-ciudad" data-ciudad="${item.ciudad}">Borrar</button></td></tr>`;
                 return acumulado + fila;
-            }, "<table><tr><th>Usuario</th><th>Ciudad</th><th>Pasajeros</th><th>Días de estancia</th><th>Precio base</th><th>Incremento</th><th>Total</th><th>Eliminar</th></tr>");
+            }, "<table><tr><th>Usuario</th><th>Ciudad</th><th>Pasajeros</th><th>Días de estancia</th><th>Precio base</th><th>Incremento</th><th>Total</th><th></th></tr>");
             //Acumulo el TOTAL GENERAL de los ITEMS de la funcion "agregarCarrito" con REDUCE
             const totalprecios = carrito.reduce((acumulado, item) => acumulado + item.total, 0);
             const tablaConTotal = `${table}<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><strong style="font-size:larger;color: blue;">Total general:</strong><span style="color: blue;"> $${totalprecios.toLocaleString('es-AR')}</td></tr></table>`;
@@ -104,9 +111,11 @@ psw.addEventListener("submit", function (event) {
         document.getElementById("agregar").addEventListener("click", agregarCarrito);
         document.getElementById("resetear").addEventListener("click", finalizarCarrito);
 
+        // Evento para eliminar ciudades de la tabla renderizada
         document.addEventListener("click", (event) => {
             if (event.target.classList.contains("eliminar-ciudad")) {
-                const ciudad = event.target.dataset.ciudad;
+                const ciudad = event.target.dataset.ciudad; //Obtengo el atributo "data-ciudad"
+                //Filtro para ver solamente cualquier ciudad que no esta en la Const ciudad y lo guardo en el localStorage
                 carrito = carrito.filter((item) => item.ciudad !== ciudad);
                 localStorage.setItem("carrito", JSON.stringify(carrito));
                 updatecarrito();

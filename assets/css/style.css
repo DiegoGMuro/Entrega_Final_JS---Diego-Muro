@@ -44,9 +44,7 @@ h3 {
     box-shadow: 5px 5px 10px black;
     padding: 10px;
     width: 25vh;
-    /* 60 */
     height: 20vh;
-    /* 45 */
     border-radius: 20px;
 }
 
@@ -56,7 +54,6 @@ h3 {
     flex-wrap: wrap;
     gap: 40px;
     justify-content: space-evenly;
-    /*center */
     align-content: center;
     width: 90%;
     margin: 10px auto;
@@ -89,10 +86,10 @@ h3 {
     text-align: center;
     color: #2cb62c;
     font-style: oblique;
-    text-decoration: underline;
-    font-size: larger;
+    font-size: 30px;
     font-weight: bold;
     margin-left: 50px;
+    margin-top: 10px;
 }
 
 .prediodesde {
@@ -131,7 +128,7 @@ h1 {
 }
 
 
-/*------ HEADER-----------------------------------------------------*/
+/*------ HEADER------------------------------------------------------------------------------------*/
 
 header {
     display: flex;
@@ -154,7 +151,10 @@ header {
 }
 
 .titulo {
-    font-size: 24px;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin: 1rem 0;
 }
 
 .modo-oscuro button {
@@ -166,7 +166,7 @@ header {
     cursor: pointer;
 }
 
-/*------ FOOTER-----------------------------------------------------*/
+/*------ FOOTER-----------------------------------------------------------------------------------------------*/
 
 img:hover {
     background-color: yellow;
@@ -175,7 +175,7 @@ img:hover {
 footer {
     background: linear-gradient(to right, rgb(146, 145, 144), rgb(59, 58, 58));
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
     
 }
 
@@ -200,7 +200,7 @@ footer a {
 }
 
 
-/*------ MODO OSCURO-----------------------------------------------------*/
+/*------ MODO OSCURO-----------------------------------------------------------------------------------------------------*/
 
 body {
     background-color: rgb(233, 232, 169);
@@ -222,6 +222,7 @@ body {
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 150px;
 }
 
 #modo:hover {
@@ -235,7 +236,7 @@ body {
 }
 
 
-/*-----------------------Leer mas leer menos -----------------------------*/
+/*-----------------------Leer mas leer menos --------------------------------------------------------------------------------*/
 
 .textoLogin {
     color: blue;
@@ -299,7 +300,7 @@ p {
 }
 
 
-/*----------FORMULARIO--------------------------------------------*/
+/*----------FORMULARIO-----------------------------------------------------------------------------*/
 
 #formulario {
     display: flex;
@@ -393,31 +394,24 @@ td:last-child {
     margin: 0 auto;
 }
 
-/*------------------------------TABLA----------------------------------------------------------*/
+/*------------------------------TABLA---------------------------------------------------------------------------------------*/
 
 /* Estilo general de la tabla */
+
 table {
     border-collapse: collapse;
-    /* width: 100%; */
     max-width: 100%;
-
     margin-bottom: 1rem;
     background-color: rgb(204, 206, 109);
     color: #333;
-
-    /* display: block; */
 }
 
 th,
 td {
     /* padding: 0.55rem; */
-
     padding: 5px;
-
     text-align: left;
     border-bottom: 1px solid #ccc;
-
-    /* display: block; */
 }
 
 th {
@@ -427,17 +421,6 @@ th {
 tr{
     margin-bottom: 10px;
 }
-
-/* Ocultar la primera columna (Usuario) en dispositivos móviles */
-/* @media only screen and (max-width: 600px) {
-    td:first-child {
-        display: none;
-    }
-
-    th:first-child {
-        display: none;
-    }
-} */
 
 
 /* Estilos responsivos */
@@ -451,13 +434,13 @@ tr{
         padding: 0.5rem;
         font-size: 0.8rem;
     } 
-
-    /* Ocultar la primera columna (Ciudad) en modo responsivo */
-     th:nth-child(1),
-    td:nth-child(1) {
-        display: none;
-    }
-} 
+    
+/* Ocultar la primera columna en modo responsivo */
+th:nth-child(1),
+td:nth-child(1) {
+    display: none;
+}
+}
 
 /*------------------------------PASSWORDS-----------------------------------------------------------*/
 
@@ -515,7 +498,7 @@ tr{
 }
 
 
-/*-----------------Carousel de fotos----------------------------------------*/
+/*-----------------Carousel de fotos----------------------------------------------------------------------*/
 
 .carousel-container {
     max-width: 800px;
@@ -561,15 +544,17 @@ tr{
     background-color: #db1c1c;
     }
 
+
 /*-----------------Imagen del seleccionable---------------------------------------*/
 
 /* Estilo para las imágenes */
+
 img {
-border: 2px solid gray; 
-display: block; 
-margin: 0 auto; 
-max-width: 500px; 
-height: auto;
+    border: 2px solid gray;
+    display: block;
+    margin: 0 auto;
+    max-width: 500px;
+    height: auto;
 }
 
 
@@ -587,10 +572,12 @@ height: auto;
 }
 
 /* Estilo para el contenedor de la imagen */
+
 div {
-margin-top: 20px; 
-text-align: center; 
+    margin-top: 20px;
+    text-align: center;
 }
+
 
 /*-------------- Espacio entre Resultado e Ingreso de contrasena-----------------------*/
 
@@ -600,4 +587,16 @@ margin-bottom: 7px; /* Reduzco el margen inferior del elemento con id "resultado
 
 #psw {
 margin-top: 5px; /* Reduzco el margen superior del formulario con id "psw" */
+}
+
+
+/*-------------- Mensaje de Bienvenida-----------------------*/
+
+.mensaje-bienvenida {
+    font-size: 24px;
+    color: #ddda0b;
+    font-weight: bold;
+    margin: 0;
+    padding: 10px;
+    border-radius: 5px;
 }
