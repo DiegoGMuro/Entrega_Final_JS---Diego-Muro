@@ -19,7 +19,7 @@ const ciudades = [
 for (let index = 0; index < ciudades.length; index++) {
     ciudadSelect.innerHTML += `<option value="${ciudades[index].ciudad}">${ciudades[index].ciudad}</option>`;
 }*/
- 
+
 
 /*  const ciudadSelect = document.createElement('select');
 for (const ciudad of ciudades) {
@@ -29,6 +29,7 @@ for (const ciudad of ciudades) {
 const padre = document.getElementById('ciudades');
 
 const ciudadSelect = document.createElement('select');
+
 for (const ciudad of ciudades) {
     const option = document.createElement('option');
     option.text = `${ciudad.ciudad}`;

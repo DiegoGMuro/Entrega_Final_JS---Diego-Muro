@@ -8,7 +8,7 @@ function redireccionVideo(videoUrl, abrirNuevaVentana) {
     }
 }
 
-// Obtengo las imágenes y asignamos el evento click
+// Obtengo las imágenes y asignamos el evento click que redirige a una NUEVA ventana para reproducir el video
 const imgAmsterdam = document.getElementById('img-amsterdam');
 imgAmsterdam.addEventListener('click', function () {
     redireccionVideo('https://www.youtube.com/embed/sn9dVPMvk1A', true);
