@@ -17,7 +17,7 @@ nacimiento.required = true;
 
 const enviar = document.createElement('button');
 enviar.type = 'submit';
-enviar.innerHTML = 'Ingrese fecha Nacimiento';
+enviar.innerHTML = 'Ingrese fecha Nacim y genere PSW';
 
 
 // Agrego los campos del formulario
@@ -50,11 +50,14 @@ formulario.addEventListener('submit', function (event) {
 			password += Math.floor(Math.random() * 10);
 		}
 		// Muestro la contraseña generada en el elemento de resultado
-		resultado.innerHTML = `Su contraseña aleatoria es: ${password}`;
+		resultado.innerHTML = `Su contraseña aleatoria es: <span class="password">${password}</span>`;
 		// Guardo la psw en sessionStorage
 		sessionStorage.setItem('password', password);
 	} else {
 		resultado.innerHTML = 'Debe ser mayor de 18 años para generar una contraseña';
 	}
 });
+
+
+
 
