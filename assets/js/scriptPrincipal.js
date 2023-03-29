@@ -15,6 +15,12 @@ const ciudades = [
 ];
 
 
+document.getElementById("submitBtn").addEventListener("click", function () {
+    window.location.assign("sub-pages/ciudades.html");
+
+});
+
+
 /* const ciudadSelect = document.createElement('select');
 for (let index = 0; index < ciudades.length; index++) {
     ciudadSelect.innerHTML += `<option value="${ciudades[index].ciudad}">${ciudades[index].ciudad}</option>`;
@@ -47,14 +53,16 @@ const contenedorImagen = document.createElement('div');
 padre.appendChild(contenedorImagen);
 
 ciudadSelect.addEventListener('change', function () {
-    const ciudadSeleccionada = ciudadSelect.value;
-    const rutaImagen = `assets/js/${ciudadSeleccionada}.jpg`;
+    //const ciudadSeleccionada = ciudadSelect.value;
+    //const rutaImagen = `assets/js/${ciudadSeleccionada}.jpg`;
     const imagen = document.createElement('img');
-    imagen.src = rutaImagen;
-    contenedorImagen.innerHTML = '';
-    imagen.classList.add("imagen-atractiva");
+    //imagen.src = rutaImagen;
+    //contenedorImagen.innerHTML = '';
+    contenedorImagen.innerHTML = `<img class="imagen-atractiva" src="assets/js/${ciudadSelect.value}.jpg"/>`;
+    //imagen.classList.add("imagen-atractiva");
     contenedorImagen.appendChild(imagen);
 });
+
 
 
 // Evento de ingresar al sistema con SUBMIT
