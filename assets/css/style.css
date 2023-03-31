@@ -374,9 +374,11 @@ input[type="number"] {
     margin-left: 10px;
     padding: 5px;
     border-radius: 5px;
-    border: none;
+    border: 5px solid #2460a5;
     width: 50px;
 }
+
+
 
 input[type="text"] {
     margin-left: 10px;
@@ -387,6 +389,13 @@ input[type="text"] {
     text-align: center;
 }
 
+/* Estilo para los placeholders de los inputs */
+::placeholder {
+    text-align: center;
+    padding: 5px;
+    font-size: 13px;
+    color: #555;
+}
 
 button {
     margin-top: 20px;
@@ -642,3 +651,12 @@ margin-top: 5px; /* Reduzco el margen superior del formulario con id "psw" */
     margin-right: 5vh ;
     border-radius: 5px;
 }
+
+
+
+/*-------------- Sweet Alert-----------------------*/
+
+.swal2-icon-custom {
+    background-color: transparent !important;
+  }
+  

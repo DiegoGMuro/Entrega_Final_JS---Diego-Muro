@@ -64,7 +64,6 @@ ciudadSelect.addEventListener('change', function () {
 });
 
 
-
 // Evento de ingresar al sistema con SUBMIT
 psw.addEventListener("submit", function (event) {
     event.preventDefault(); // Evita el envío del formulario por defecto
@@ -72,7 +71,6 @@ psw.addEventListener("submit", function (event) {
     const pswAutenticada = sessionStorage.getItem('password') // Uso la psw guardada anteriormente en 'generacionPsw.js'
     if (pswUsuario === pswAutenticada) {
         mensaje.innerHTML = "Su contraseña es correcta, proceda a cotizar viajes";
-        // Habiendo validado la PSW procedo a cotizar viajes
 
         // Condiciones de incrementos por estadia
         const incremEstadia = (dias) => {
@@ -105,6 +103,8 @@ psw.addEventListener("submit", function (event) {
             localStorage.setItem("carrito", JSON.stringify(carrito));
             updatecarrito();
         };
+
+
         // Actualizo carrito y armo la tabla
         const updatecarrito = () => {
             const carritoDiv = document.getElementById("carrito");
@@ -118,7 +118,9 @@ psw.addEventListener("submit", function (event) {
             const tablaConTotal = `${table}<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><strong style="font-size:larger;color: blue;">Total general:</strong><span style="color: blue;"> $${totalprecios.toLocaleString('es-AR')}</td></tr></table>`;
             carritoDiv.innerHTML = tablaConTotal;
 
-        };
+        };  
+
+
         // Finalizo la cotizacion y limpio la tabla
         const finalizarCarrito = () => {
             carrito = [];
@@ -140,12 +142,16 @@ psw.addEventListener("submit", function (event) {
             }
         });
 
+
+        
+
         // Obtener el carrito guardado en localStorage, si existe
         const carritoGuardado = localStorage.getItem("carrito");
         if (carritoGuardado) {
             carrito = JSON.parse(carritoGuardado);
             updatecarrito();
         }
+
 
         // Sin ingreso mal la contraseña voy al ELSE
     } else {
@@ -160,3 +166,131 @@ psw.addEventListener("submit", function (event) {
     }
 });
 
+
+
+
+/*  document.getElementById("comprar").addEventListener("click", function () {
+    Swal.fire({
+        icon: 'success',
+        title: 'Gracias por su compra!!',
+        html: 'Usted será redirigido a nuestra plataforma de pagos',
+        footer: 'Aceptamos Visa, Mastercard y American Express',
+        confirmButtonText: 'Aceptar',
+        iconHtml: '<img src="icon-256x256.png" style="width: 80px; height: 80px; border: none;">',
+        customClass: {
+            icon: 'swal2-icon-custom'
+        }
+    }).then(function () {
+        window.location.href = 'https://www.mercadopago.com.ar';
+    });
+}); */
+ 
+
+
+/* document.getElementById("comprar").addEventListener("click", function () {
+    if (carrito.length === 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Tu carrito está vacío',
+            confirmButtonText: 'Aceptar'
+        });
+    } else {
+        Swal.fire({
+            icon: 'success',
+            title: 'Gracias por su compra!!',
+            html: 'Usted será redirigido a nuestra plataforma de pagos',
+            footer: 'Aceptamos Visa, Mastercard y American Express',
+            confirmButtonText: 'Aceptar',
+            iconHtml: '<img src="icon-256x256.png" style="width: 80px; height: 80px; border: none;">',
+            customClass: {
+                icon: 'swal2-icon-custom'
+            }
+        }).then(function () {
+            window.location.href = 'https://www.mercadopago.com.ar';
+        });
+    }
+}); */
+
+
+
+const comprarButton = document.getElementById("comprar");
+const carrito = []; // Ejemplo
+
+comprarButton.addEventListener("click", handleClickCompra);
+
+function handleClickCompra() {
+    if (carrito.length === 0) {
+        mostrarMensajeError();
+    } else {
+        mostrarMensajeExitoso();
+    }
+}
+
+function mostrarMensajeError() {
+    const mensajeError = {
+        icon: 'error',
+        title: 'Error!',
+        text: 'Tu carrito está vacío',
+        confirmButtonText: 'Aceptar'
+    };
+
+    mostrarMensaje(mensajeError);
+}
+
+function mostrarMensajeExitoso() {
+    const mensajeExitoso = {
+        icon: 'success',
+        title: 'Gracias por su compra!!',
+        html: 'Usted será redirigido a nuestra plataforma de pagos',
+        footer: 'Aceptamos Visa, Mastercard y American Express',
+        confirmButtonText: 'Aceptar',
+        iconHtml: '<img src="icon-256x256.png" style="width: 80px; height: 80px; border: none;">',
+        customClass: {
+            icon: 'swal2-icon-custom'
+        }
+    };
+
+    mostrarMensaje(mensajeExitoso).then(function () {
+        window.location.href = 'https://www.mercadopago.com.ar';
+    });
+}
+
+function mostrarMensaje(mensaje) {
+    return Swal.fire(mensaje);
+}
+
+
+
+
+
+
+
+
+
+/* document.getElementById("comprar").addEventListener("click", () => {
+    if (carrito.length === 0) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'El carrito está vacío!',
+        });
+    } else {
+        // Aquí se puede agregar el código para realizar la compra
+        finalizarCarrito();
+        Swal.fire({
+            icon: 'success',
+            title: 'Gracias por su compra!!',
+            html: 'Usted será redirigido a nuestra plataforma de pagos',
+            footer: 'Aceptamos Visa, Mastercard y American Express',
+            confirmButtonText: 'Aceptar',
+            iconHtml: '<img src="icon-256x256.png" style="width: 80px; height: 80px; border: none;">',
+            customClass: {
+                icon: 'swal2-icon-custom'
+            }
+        }).then(function () {
+            window.location.href = 'https://www.mercadopago.com.ar';
+        });
+    }
+});
+ */

@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="shortcut icon" href="logo-js.png" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 
     <title>JavaScript</title>
@@ -41,7 +43,7 @@
     <div>
         <form id="psw">
             <label for="password" class="color_letra">Ingrese su contraseña: </label>
-            <input type="password" id="password" name="password" placeholder="Password">
+            <input type="password" id="password" name="password" placeholder="PSW">
             <button type="submit">Ingresar</button>
         </form>
         <div id="mensaje"></div>
@@ -84,7 +86,8 @@
         <label for="dias" class="diasDeEstancia">Cantidad de días de estancia:</label>
         <input type="number" id="dias" value="1" min="1">
         <button type="button" id="agregar">Agregar</button>
-        <button type="button" id="resetear">Resetear</button>
+        <button type="button" id="resetear">Vaciar Carrito</button>
+        <button type="button" id="comprar">Comprar Carrito</button>
 
     </form>
 
