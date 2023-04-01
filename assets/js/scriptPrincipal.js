@@ -3,63 +3,62 @@ const maxIntentos = 3;
 let intentos = 0;
 const psw = document.getElementById("psw");
 const mensaje = document.getElementById("mensaje");
+const tituloCiudad = document.getElementById('ciudades');
+const ciudadSelect = document.createElement('select');
+const url = "assets/js/ciudades.json"
 
-const ciudades = [
-    { ciudad: 'Amsterdam', tarifa: 500000 },
-    { ciudad: 'Barcelona', tarifa: 450000 },
-    { ciudad: 'Berlin', tarifa: 600000 },
-    { ciudad: 'Roma', tarifa: 400000 },
-    { ciudad: 'Londres', tarifa: 700000 },
-    { ciudad: 'Paris', tarifa: 600000 }
+let ciudades = [];
 
-];
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        ciudades = data;
+        cargarCiudades(ciudades);
+    })
 
+function cargarCiudades(ciudades) {
+    ciudades.forEach(ciudad => {
+        const option = document.createElement('option');
+        option.text = `${ciudad.ciudad}`;
+        ciudadSelect.appendChild(option);
+    });
+}
 
+tituloCiudad.appendChild(ciudadSelect);
+ciudadSelect.style.display = 'block';
+ciudadSelect.style.margin = '0 auto';
+
+// Se redirige a otro HTML con Galeria de fotos de ciudades
 document.getElementById("submitBtn").addEventListener("click", function () {
     window.location.assign("sub-pages/ciudades.html");
 
 });
 
 
+/* for (const ciudad of ciudades) {
+    const option = document.createElement('option');
+    option.text = `${ciudad.ciudad}`;
+    ciudadSelect.appendChild(option);
+} */
+
 /* const ciudadSelect = document.createElement('select');
 for (let index = 0; index < ciudades.length; index++) {
     ciudadSelect.innerHTML += `<option value="${ciudades[index].ciudad}">${ciudades[index].ciudad}</option>`;
 }*/
-
 
 /*  const ciudadSelect = document.createElement('select');
 for (const ciudad of ciudades) {
     ciudadSelect.innerHTML += `<option value="${ciudad.ciudad}">${ciudad.ciudad}</option>`;
 } */
 
-const padre = document.getElementById('ciudades');
 
-const ciudadSelect = document.createElement('select');
-
-for (const ciudad of ciudades) {
-    const option = document.createElement('option');
-    option.text = `${ciudad.ciudad}`;
-    ciudadSelect.appendChild(option);
-}
-
-padre.appendChild(ciudadSelect);
-
-ciudadSelect.style.display = 'block';
-ciudadSelect.style.margin = '0 auto';
-
-
-// Se renderiza la imagen de la ciudad seleccinada 
+// Se renderiza la imagen de la ciudad seleccionada 
 const contenedorImagen = document.createElement('div');
-padre.appendChild(contenedorImagen);
+tituloCiudad.appendChild(contenedorImagen);
 
 ciudadSelect.addEventListener('change', function () {
-    //const ciudadSeleccionada = ciudadSelect.value;
-    //const rutaImagen = `assets/js/${ciudadSeleccionada}.jpg`;
     const imagen = document.createElement('img');
-    //imagen.src = rutaImagen;
-    //contenedorImagen.innerHTML = '';
     contenedorImagen.innerHTML = `<img class="imagen-atractiva" src="assets/js/${ciudadSelect.value}.jpg"/>`;
-    //imagen.classList.add("imagen-atractiva");
     contenedorImagen.appendChild(imagen);
 });
 
@@ -70,7 +69,12 @@ psw.addEventListener("submit", function (event) {
     const pswUsuario = psw.password.value;
     const pswAutenticada = sessionStorage.getItem('password') // Uso la psw guardada anteriormente en 'generacionPsw.js'
     if (pswUsuario === pswAutenticada) {
-        mensaje.innerHTML = "Su contraseña es correcta, proceda a cotizar viajes";
+        //mensaje.innerHTML = "Su contraseña es correcta, proceda a cotizar viajes";
+        swal.fire({
+            title: "¡Contraseña correcta!",
+            text: "Proceda a cotizar viajes",
+            icon: "success",
+        });
 
         // Condiciones de incrementos por estadia
         const incremEstadia = (dias) => {
@@ -105,7 +109,6 @@ psw.addEventListener("submit", function (event) {
         };
 
 
-
         // Actualizo carrito y armo la tabla
         const updatecarrito = () => {
             const carritoDiv = document.getElementById("carrito");
@@ -120,8 +123,10 @@ psw.addEventListener("submit", function (event) {
             carritoDiv.innerHTML = tablaConTotal;
         };
 
+
         const comprarCarrito = () => {
             const botonComprar = document.getElementById("comprar");
+            updatecarrito();
             if (carrito.length > 0) {
                 botonComprar.addEventListener("click", function () {
                     Swal.fire({
@@ -206,7 +211,7 @@ psw.addEventListener("submit", function (event) {
                 Swal.fire({
                     title: '¿Estás seguro?',
                     text: `¿Deseas eliminar la ciudad ${ciudad}?`,
-                    icon: 'warning',
+                    icon: 'question',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
@@ -241,9 +246,19 @@ psw.addEventListener("submit", function (event) {
     } else {
         intentos++;
         if (intentos < maxIntentos) {
-            mensaje.innerHTML = `Contraseña incorrecta. Le quedan ${maxIntentos - intentos} intentos.`;
+            //mensaje.innerHTML = `Contraseña incorrecta. Le quedan ${maxIntentos - intentos} intentos.`;
+            swal.fire({
+                title: "¡Contraseña incorrecta!",
+                text: `Le quedan ${maxIntentos - intentos} intentos.`,
+                icon: "error",
+            });
         } else {
-            mensaje.innerHTML = "Ha excedido el número máximo de intentos. Acceso bloqueado.";
+            //mensaje.innerHTML = "Ha excedido el número máximo de intentos. Acceso bloqueado.";
+            swal.fire({
+                title: "¡Acceso bloqueado!",
+                text: "Ha excedido el número máximo de intentos.",
+                icon: "warning",
+            });
             psw.password.disabled = true; // Desactivo el ingreso de contraseña después de agotar los intentos
             psw.querySelector("button[type=submit]").disabled = true; // Desactivo el botón de enviar (CSS), después de agotar los intentos.
         }

@@ -75,11 +75,11 @@ formulario.addEventListener('submit', function (event) {
 			password += Math.floor(Math.random() * 10);
 		}
 		// Muestro la contraseña generada en el elemento de resultado
-		resultado.innerHTML = `Su contraseña aleatoria es: <span class="password">${password}</span> y su fecha de nacimiento fue el ${dia}-${mes}-${anio}`;
+		resultado.innerHTML = `Su contraseña aleatoria es: <span class="password">${password}</span> Su fecha de nacimiento fue el ${dia}-${mes}-${anio} y usted tiene ${edadUsuario} años`;
 		// Guardo la psw en sessionStorage
 		sessionStorage.setItem('password', password);
 	} else {
-		resultado.innerHTML = 'Debe ser mayor de 18 años para generar una contraseña';
+		resultado.innerHTML = `Debe ser mayor de 18 años para generar una contraseña y usted tiene ${edadUsuario} años `;
 	}
 });
 
