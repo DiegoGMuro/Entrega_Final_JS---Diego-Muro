@@ -105,6 +105,7 @@ psw.addEventListener("submit", function (event) {
         };
 
 
+
         // Actualizo carrito y armo la tabla
         const updatecarrito = () => {
             const carritoDiv = document.getElementById("carrito");
@@ -117,8 +118,43 @@ psw.addEventListener("submit", function (event) {
             const totalprecios = carrito.reduce((acumulado, item) => acumulado + item.total, 0);
             const tablaConTotal = `${table}<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><strong style="font-size:larger;color: blue;">Total general:</strong><span style="color: blue;"> $${totalprecios.toLocaleString('es-AR')}</td></tr></table>`;
             carritoDiv.innerHTML = tablaConTotal;
+        };
 
-        };  
+        const comprarCarrito = () => {
+            const botonComprar = document.getElementById("comprar");
+            if (carrito.length > 0) {
+                botonComprar.addEventListener("click", function () {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Gracias por su cotizacion!!',
+                        html: 'Usted será redirigido a nuestra plataforma de pagos',
+                        footer: 'Aceptamos Visa, Mastercard y American Express',
+                        confirmButtonText: 'Aceptar',
+                        showCancelButton: true,
+                        cancelButtonText: 'Cancelar',
+                        iconHtml: '<img src="icon-256x256.png" style="width: 80px; height: 80px; border: none;">',
+                        customClass: {
+                            icon: 'swal2-icon-custom'
+                        }
+                    }).then(function (result) {
+                        if (result.isConfirmed) {
+                            window.location.href = 'https://www.mercadopago.com.ar';
+                        }
+                    });
+                });
+                //console.log("Compra realizada exitosamente");
+            } else {
+                botonComprar.addEventListener("click", function () {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Error!',
+                        text: 'Tu carrito está vacío',
+                        confirmButtonText: 'Aceptar'
+                    });
+                });
+                //console.log("No hay elementos en el carrito para comprar");
+            }
+        };
 
 
         // Finalizo la cotizacion y limpio la tabla
@@ -126,24 +162,72 @@ psw.addEventListener("submit", function (event) {
             carrito = [];
             localStorage.removeItem("carrito");
             updatecarrito();
+
+            // Mostrar alerta de éxito usando Toastyfy
+            Toastify({
+                text: "La cotización ha sido finalizada exitosamente.",
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                duration: 3000,
+                style: {
+                    font: "bold 24px 'Helvetica Neue', sans-serif"
+                }
+            }).showToast();
         };
-        // Eventos de agregar y resetear
+
+        // Eventos de agregar, resetear y comprar carrito
         document.getElementById("agregar").addEventListener("click", agregarCarrito);
-        document.getElementById("resetear").addEventListener("click", finalizarCarrito);
+        document.getElementById("resetear").addEventListener("click", () => {
+            // Mostrar alerta de advertencia usando Toastyfy
+            Toastify({
+                text: "¿Estás seguro de que deseas finalizar la cotización?",
+                backgroundColor: "linear-gradient(to right, #ff6e7f, #bfe9ff)",
+                style: {
+                    font: "bold 24px 'Helvetica Neue', sans-serif"
+                },
+                duration: 5000,
+                close: true,
+                gravity: "top",
+                position: "center",
+                stopOnFocus: true,
+                onClick: function () {
+                    finalizarCarrito();
+                }
+            }).showToast();
+        });
+        document.getElementById("comprar").addEventListener("click", comprarCarrito);
+
+
 
         // Evento para eliminar ciudades de la tabla renderizada
         document.addEventListener("click", (event) => {
             if (event.target.classList.contains("eliminar-ciudad")) {
                 const ciudad = event.target.dataset.ciudad; //Obtengo el atributo "data-ciudad"
-                //Filtro para ver solamente cualquier ciudad que no esta en la Const ciudad y lo guardo en el localStorage
-                carrito = carrito.filter((item) => item.ciudad !== ciudad);
-                localStorage.setItem("carrito", JSON.stringify(carrito));
-                updatecarrito();
+                // Mostrar Sweet Alert para confirmar eliminación
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: `¿Deseas eliminar la ciudad ${ciudad}?`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        //Filtro para ver solamente cualquier ciudad que no esta en la Const ciudad y lo guardo en el localStorage
+                        carrito = carrito.filter((item) => item.ciudad !== ciudad);
+                        localStorage.setItem("carrito", JSON.stringify(carrito));
+                        updatecarrito();
+                        Swal.fire(
+                            '¡Eliminado!',
+                            `La ciudad ${ciudad} ha sido eliminada del carrito.`,
+                            'success'
+                        )
+                    }
+                })
             }
         });
-
-
-        
 
         // Obtener el carrito guardado en localStorage, si existe
         const carritoGuardado = localStorage.getItem("carrito");
@@ -168,129 +252,3 @@ psw.addEventListener("submit", function (event) {
 
 
 
-
-/*  document.getElementById("comprar").addEventListener("click", function () {
-    Swal.fire({
-        icon: 'success',
-        title: 'Gracias por su compra!!',
-        html: 'Usted será redirigido a nuestra plataforma de pagos',
-        footer: 'Aceptamos Visa, Mastercard y American Express',
-        confirmButtonText: 'Aceptar',
-        iconHtml: '<img src="icon-256x256.png" style="width: 80px; height: 80px; border: none;">',
-        customClass: {
-            icon: 'swal2-icon-custom'
-        }
-    }).then(function () {
-        window.location.href = 'https://www.mercadopago.com.ar';
-    });
-}); */
- 
-
-
-/* document.getElementById("comprar").addEventListener("click", function () {
-    if (carrito.length === 0) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error!',
-            text: 'Tu carrito está vacío',
-            confirmButtonText: 'Aceptar'
-        });
-    } else {
-        Swal.fire({
-            icon: 'success',
-            title: 'Gracias por su compra!!',
-            html: 'Usted será redirigido a nuestra plataforma de pagos',
-            footer: 'Aceptamos Visa, Mastercard y American Express',
-            confirmButtonText: 'Aceptar',
-            iconHtml: '<img src="icon-256x256.png" style="width: 80px; height: 80px; border: none;">',
-            customClass: {
-                icon: 'swal2-icon-custom'
-            }
-        }).then(function () {
-            window.location.href = 'https://www.mercadopago.com.ar';
-        });
-    }
-}); */
-
-
-
-const comprarButton = document.getElementById("comprar");
-const carrito = []; // Ejemplo
-
-comprarButton.addEventListener("click", handleClickCompra);
-
-function handleClickCompra() {
-    if (carrito.length === 0) {
-        mostrarMensajeError();
-    } else {
-        mostrarMensajeExitoso();
-    }
-}
-
-function mostrarMensajeError() {
-    const mensajeError = {
-        icon: 'error',
-        title: 'Error!',
-        text: 'Tu carrito está vacío',
-        confirmButtonText: 'Aceptar'
-    };
-
-    mostrarMensaje(mensajeError);
-}
-
-function mostrarMensajeExitoso() {
-    const mensajeExitoso = {
-        icon: 'success',
-        title: 'Gracias por su compra!!',
-        html: 'Usted será redirigido a nuestra plataforma de pagos',
-        footer: 'Aceptamos Visa, Mastercard y American Express',
-        confirmButtonText: 'Aceptar',
-        iconHtml: '<img src="icon-256x256.png" style="width: 80px; height: 80px; border: none;">',
-        customClass: {
-            icon: 'swal2-icon-custom'
-        }
-    };
-
-    mostrarMensaje(mensajeExitoso).then(function () {
-        window.location.href = 'https://www.mercadopago.com.ar';
-    });
-}
-
-function mostrarMensaje(mensaje) {
-    return Swal.fire(mensaje);
-}
-
-
-
-
-
-
-
-
-
-/* document.getElementById("comprar").addEventListener("click", () => {
-    if (carrito.length === 0) {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Oops...',
-            text: 'El carrito está vacío!',
-        });
-    } else {
-        // Aquí se puede agregar el código para realizar la compra
-        finalizarCarrito();
-        Swal.fire({
-            icon: 'success',
-            title: 'Gracias por su compra!!',
-            html: 'Usted será redirigido a nuestra plataforma de pagos',
-            footer: 'Aceptamos Visa, Mastercard y American Express',
-            confirmButtonText: 'Aceptar',
-            iconHtml: '<img src="icon-256x256.png" style="width: 80px; height: 80px; border: none;">',
-            customClass: {
-                icon: 'swal2-icon-custom'
-            }
-        }).then(function () {
-            window.location.href = 'https://www.mercadopago.com.ar';
-        });
-    }
-});
- */
