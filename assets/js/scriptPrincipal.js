@@ -77,7 +77,7 @@ psw.addEventListener("submit", function (event) {
         });
 
         // Condiciones de incrementos por estadia
-        const incremEstadia = (dias) => {
+/*         const incremEstadia = (dias) => {
             if (dias >= 1 && dias <= 7) {
                 return 0.4;
             } else if (dias >= 8 && dias <= 14) {
@@ -89,6 +89,16 @@ psw.addEventListener("submit", function (event) {
             } else {
                 return 0;
             }
+        }
+ */
+
+        // Condiciones de incrementos por estadia
+        const incremEstadia = (dias) => {
+            return dias >= 1 && dias <= 7 ? 0.4
+                : dias >= 8 && dias <= 14 ? 0.3
+                    : dias >= 15 && dias <= 21 ? 0.2
+                        : dias >= 22 && dias <= 28 ? 0.1
+                            : 0;
         }
 
         // Agrego al carrito - calculo valores - transformo en JSON y guardo con SetItem

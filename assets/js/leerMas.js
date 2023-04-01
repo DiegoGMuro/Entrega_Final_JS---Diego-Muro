@@ -8,6 +8,15 @@ botonLeerMas.addEventListener('click', alternarTexto);
 // Valido si la CLASE "mostrarTexto" esta activada
 function alternarTexto() {
     esconderTexto.classList.toggle('mostrarTexto');
+    botonLeerMas.innerHTML = esconderTexto.classList.contains('mostrarTexto') ? 'Leer menos' : 'Leer más';
+    }
+    
+    
+
+
+
+/* function alternarTexto() {
+    esconderTexto.classList.toggle('mostrarTexto');
 
     if (esconderTexto.classList.contains('mostrarTexto')) {
         botonLeerMas.innerHTML = 'Leer menos'
@@ -17,3 +26,4 @@ function alternarTexto() {
     }
 
 }
+ */
