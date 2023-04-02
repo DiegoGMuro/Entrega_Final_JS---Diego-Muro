@@ -159,7 +159,8 @@ psw.addEventListener("submit", function (event) {
         };
 
 
-        const comprarCarrito = () => {
+/*-----------------------------------*/
+/*         const comprarCarrito = () => {
             const botonComprar = document.getElementById("comprar");
             updatecarrito();
             if (carrito.length > 0) {
@@ -199,7 +200,77 @@ psw.addEventListener("submit", function (event) {
                 });
                 //console.log("No hay elementos en el carrito para comprar");
             }
+        }; */
+/*--------------------------------------------------------------------------*/        
+
+        const comprarCarrito = () => {
+            const botonComprar = document.getElementById("comprar");
+            updatecarrito();
+            if (carrito.length > 0) {
+                botonComprar.addEventListener("click", function () {
+                    mostrarMensajeDeAgradecimiento()
+                        .then(redirigirAPagos)
+                        .catch((error) => console.log(error));
+                });
+            } else {
+                botonComprar.addEventListener("click", function () {
+                    mostrarMensajeDeError()
+                        .catch((error) => console.log(error));
+                });
+            }
         };
+
+        const mostrarMensajeDeAgradecimiento = () => {
+            return new Promise((resolve) => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Gracias por su cotizacion!!',
+                    html: 'Usted será redirigido a nuestra plataforma de pagos',
+                    footer: 'Aceptamos Visa, Mastercard y American Express',
+                    confirmButtonText: 'Aceptar',
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancelar',
+                    iconHtml: '<img src="icon-256x256.png" style="width: 80px; height: 80px; border: none;">',
+                    customClass: {
+                        icon: 'swal2-icon-custom',
+                        background: 'swal2-popup'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        resolve();
+                    } else {
+                        throw new Error('La compra fue cancelada');
+                    }
+                });
+            });
+        };
+
+        const redirigirAPagos = () => {
+            return new Promise((resolve) => {
+                window.location.href = 'https://www.mercadopago.com.ar';
+                resolve();
+            });
+        };
+
+        const mostrarMensajeDeError = () => {
+            return new Promise((resolve) => {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Error!',
+                    text: 'Tu carrito está vacío',
+                    confirmButtonText: 'Aceptar',
+                    customClass: {
+                        icon: 'swal2-icon-custom',
+                        background: 'swal2-popup'
+                    }
+                }).then(() => {
+                    resolve();
+                });
+            });
+        };
+
+
+
 
 
         // Finalizo la cotizacion y limpio la tabla
