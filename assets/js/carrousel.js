@@ -7,16 +7,19 @@ const nextButton = document.querySelector('.next');
 let index = 0;
 const anchoFoto = carousel.querySelector('.carousel-item').clientWidth;
 const cuentaDeFotos = carousel.querySelectorAll('.carousel-item').length;
+
 // Cuando presiono boton ANTERIOR
 prevButton.addEventListener('click', () => {
     index = Math.max(index - 1, 0);
     carousel.style.transform = `translateX(-${index * anchoFoto}px)`;
 });
+
 // Cuando presiono boton SIGUIENTE
 nextButton.addEventListener('click', () => {
     index = Math.min(index + 1, cuentaDeFotos - 1);
     carousel.style.transform = `translateX(-${index * anchoFoto}px)`;
 });
+
 // Cuando cambio tamanio de pantalla
 window.addEventListener('resize', () => {
     const newAnchoFoto = carousel.querySelector('.carousel-item').clientWidth;

@@ -9,12 +9,33 @@ const url = "assets/js/ciudades.json"
 
 let ciudades = [];
 
-fetch(url)
+/* fetch(url)
     .then(response => response.json())
     .then(data => {
         ciudades = data;
         cargarCiudades(ciudades);
+    }) */
+
+
+fetch(url)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('La respuesta de la red no fue exitosa');
+        }
+        return response.json();
+
     })
+    .then(data => {
+        ciudades = data;
+        cargarCiudades(ciudades);
+
+    })
+    .catch(error => {
+        console.error('Hubo un problema con la operación de fetch:', error);
+        //console.log(error);
+
+    });
+
 
 function cargarCiudades(ciudades) {
     ciudades.forEach(ciudad => {
@@ -74,6 +95,10 @@ psw.addEventListener("submit", function (event) {
             title: "¡Contraseña correcta!",
             text: "Proceda a cotizar viajes",
             icon: "success",
+            customClass: {
+                icon: 'swal2-icon-custom',
+                background: 'swal2-popup'
+            }
         });
 
         // Condiciones de incrementos por estadia
@@ -149,7 +174,8 @@ psw.addEventListener("submit", function (event) {
                         cancelButtonText: 'Cancelar',
                         iconHtml: '<img src="icon-256x256.png" style="width: 80px; height: 80px; border: none;">',
                         customClass: {
-                            icon: 'swal2-icon-custom'
+                            icon: 'swal2-icon-custom',
+                            background: 'swal2-popup'
                         }
                     }).then(function (result) {
                         if (result.isConfirmed) {
@@ -164,7 +190,11 @@ psw.addEventListener("submit", function (event) {
                         icon: 'warning',
                         title: 'Error!',
                         text: 'Tu carrito está vacío',
-                        confirmButtonText: 'Aceptar'
+                        confirmButtonText: 'Aceptar',
+                        customClass: {
+                            icon: 'swal2-icon-custom',
+                            background: 'swal2-popup'
+                        }
                     });
                 });
                 //console.log("No hay elementos en el carrito para comprar");
@@ -226,7 +256,11 @@ psw.addEventListener("submit", function (event) {
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Sí, eliminar',
-                    cancelButtonText: 'Cancelar'
+                    cancelButtonText: 'Cancelar',
+                    customClass: {
+                        icon: 'swal2-icon-custom',
+                        background: 'swal2-popup'
+                    }
                 }).then((result) => {
                     if (result.isConfirmed) {
 
@@ -261,6 +295,10 @@ psw.addEventListener("submit", function (event) {
                 title: "¡Contraseña incorrecta!",
                 text: `Le quedan ${maxIntentos - intentos} intentos.`,
                 icon: "error",
+                customClass: {
+                    icon: 'swal2-icon-custom',
+                    background: 'swal2-popup'
+                }
             });
         } else {
             //mensaje.innerHTML = "Ha excedido el número máximo de intentos. Acceso bloqueado.";
@@ -268,6 +306,10 @@ psw.addEventListener("submit", function (event) {
                 title: "¡Acceso bloqueado!",
                 text: "Ha excedido el número máximo de intentos.",
                 icon: "warning",
+                customClass: {
+                    icon: 'swal2-icon-custom',
+                    background: 'swal2-popup'
+                }
             });
             psw.password.disabled = true; // Desactivo el ingreso de contraseña después de agotar los intentos
             psw.querySelector("button[type=submit]").disabled = true; // Desactivo el botón de enviar (CSS), después de agotar los intentos.

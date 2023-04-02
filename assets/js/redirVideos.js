@@ -1,5 +1,4 @@
 
-// Creo una función que redirecciona a la página web del video
 /* function redireccionVideo(videoUrl, abrirNuevaVentana) {
     if (abrirNuevaVentana) {
         window.open(videoUrl);
