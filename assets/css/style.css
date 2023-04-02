@@ -657,13 +657,24 @@ margin-top: 5px; /* Reduzco el margen superior del formulario con id "psw" */
 
 .swal2-icon-custom {
     background-color: transparent !important;
-    
+
 }
 
 .swal2-popup {
     background-color: lightblue;
+}
+
+
+@media screen and (max-width: 480px) {
+    .swal2-popup {
+        font-size: 12px;
     }
 
+    .swal2-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
 
 /*-------------- Imagen de usuario-----------------------*/
 
