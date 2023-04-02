@@ -222,7 +222,9 @@ psw.addEventListener("submit", function (event) {
             }
         };
 
-        const mostrarMensajeDeAgradecimiento = () => {
+
+
+/*         const mostrarMensajeDeAgradecimiento = () => {
             return new Promise((resolve) => {
                 Swal.fire({
                     icon: 'success',
@@ -246,16 +248,73 @@ psw.addEventListener("submit", function (event) {
                 });
             });
         };
+ */
 
+
+
+        const mostrarMensajeDeAgradecimiento = () => {
+            return new Promise((resolve, reject) => {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Gracias por su cotización!',
+                    html: 'Será redirigido a nuestra plataforma de pagos',
+                    footer: 'Aceptamos Visa, Mastercard y American Express',
+                    confirmButtonText: 'Aceptar',
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancelar',
+                    iconHtml: '<img src="icon-256x256.png" style="width: 80px; height: 80px; border: none;">',
+                    customClass: {
+                        icon: 'swal2-icon-custom',
+                        background: 'swal2-popup'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                }).catch((error) => {
+                    console.error('Ocurrió un error:', error);
+                    reject();
+                });
+            });
+        };
+
+
+
+
+
+
+
+/* 
         const redirigirAPagos = () => {
             return new Promise((resolve) => {
                 window.location.href = 'https://www.mercadopago.com.ar';
                 resolve();
             });
         };
+ */
+
+
+        
+        const redirigirAPagos = () => {
+            return new Promise((resolve, reject) => {
+                try {
+                    window.location.href = 'https://www.mercadopago.com.ar';
+                    resolve();
+                } catch (error) {
+                    reject(error);
+                }
+            });
+        };
+
+
+
+
+
 
         const mostrarMensajeDeError = () => {
-            return new Promise((resolve) => {
+            return new Promise((resolve, reject) => {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Error!',
@@ -267,6 +326,10 @@ psw.addEventListener("submit", function (event) {
                     }
                 }).then(() => {
                     resolve();
+
+                }).catch((error) => {
+                    reject(error);
+
                 });
             });
         };

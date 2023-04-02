@@ -16,7 +16,7 @@
 
 // Agrego mensaje de Bienvenida del usuario en el Header 
 function mostrarMensajeBienvenida() {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
         const usuarioInput = document.getElementById("usuario");
         const mensajeBienvenida = document.createElement("p");
         mensajeBienvenida.classList.add("mensaje-bienvenida");
@@ -38,9 +38,18 @@ function mostrarMensajeBienvenida() {
 
         // Escucho el evento de completar el nombre y pego em nombre y mensaje en el encabezado
         usuarioInput.addEventListener("input", () => {
+
+            if (usuarioInput.value) {
+
             mensajeBienvenida.textContent = `Bienvenido(a), ${usuarioInput.value}!`;
             encabezado.appendChild(mensajeBienvenida);
             resolve();
+
+        } else {
+            reject("El campo de usuario está vacío");
+        }
+
+
         });
     });
 }
@@ -48,4 +57,10 @@ function mostrarMensajeBienvenida() {
 // Llamo a la función y uso then() para ejecutar código después de que se muestre el mensaje de bienvenida.
 mostrarMensajeBienvenida().then(() => {
     console.log("Mensaje de bienvenida mostrado correctamente");
-});
+
+}).catch((error) => {
+    console.log("Error al mostrar el mensaje de bienvenida:", error);
+
+
+
+}); 

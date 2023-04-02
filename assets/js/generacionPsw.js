@@ -30,8 +30,8 @@ const anioNacimiento = document.createElement('input');
 anioNacimiento.type = 'number';
 anioNacimiento.id = 'anioNacimiento';
 anioNacimiento.placeholder = 'Año';
-anioNacimiento.min = 1900; // establece el año mínimo
-anioNacimiento.max = new Date().getFullYear(); // establece el año máximo
+anioNacimiento.min = 1900;
+anioNacimiento.max = new Date().getFullYear();
 anioNacimiento.required = true;
 
 
@@ -83,6 +83,30 @@ formulario.addEventListener('submit', function (event) {
 		resultado.innerHTML = `Su contraseña aleatoria es: <span class="password">${password}</span> Su fecha de nacimiento fue el ${dia}-${mes}-${anio} y usted tiene ${edadUsuario} años. <br><br><span class="ultimo-acceso"> Ultimo acceso el ${ahora}</span>`;
 		// Guardo la psw en sessionStorage
 		sessionStorage.setItem('password', password);
+
+		// Oculto el botón después de ser presionado
+		enviar.style.display = 'none';
+		diaNacimiento.style.display = 'none';
+		mesNacimiento.style.display = 'none';
+		anioNacimiento.style.display = 'none';
+
+		// Agrego un setTimeout para mostrar el botón después de 5 minutos
+		setTimeout(() => {
+			enviar.style.display = 'block';
+		}, 300000);
+
+		setTimeout(() => {
+			diaNacimiento.style.display = 'block';
+		}, 300000);
+
+		setTimeout(() => {
+			mesNacimiento.style.display = 'block';
+		}, 300000);
+
+		setTimeout(() => {
+			anioNacimiento.style.display = 'block';
+		}, 300000);
+
 	} else {
 		resultado.innerHTML = `Debe ser mayor de 18 años para generar una contraseña y usted tiene ${edadUsuario} años. <br><br><span class="ultimo-acceso"> Ultimo acceso el ${ahora}</span> `;
 	}
