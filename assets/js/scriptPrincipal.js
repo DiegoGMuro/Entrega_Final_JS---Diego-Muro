@@ -3,10 +3,11 @@ const maxIntentos = 3;
 let intentos = 0;
 const psw = document.getElementById("psw");
 const mensaje = document.getElementById("mensaje");
+
+//Creo elementos seleccionables para Ciudades y lo traigo de un JSON
 const tituloCiudad = document.getElementById('ciudades');
 const ciudadSelect = document.createElement('select');
 const url = "assets/js/ciudades.json"
-
 let ciudades = [];
 
 /* fetch(url)
@@ -43,11 +44,12 @@ function cargarCiudades(ciudades) {
         option.text = `${ciudad.ciudad}`;
         ciudadSelect.appendChild(option);
     });
-}
-
+//}
 tituloCiudad.appendChild(ciudadSelect);
 ciudadSelect.style.display = 'block';
 ciudadSelect.style.margin = '0 auto';
+}
+
 
 // Se redirige a otro HTML con Galeria de fotos de ciudades
 document.getElementById("submitBtn").addEventListener("click", function () {
