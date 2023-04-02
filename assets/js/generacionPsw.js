@@ -54,32 +54,37 @@ formulario.addEventListener('submit', function (event) {
 	event.preventDefault(); // Evito el envio del formulario por defecto
 
 
-// Obtengo los valores de día, mes y año de nacimiento del usuario
+	// Obtengo la fecha y hora actual en el formato deseado
+	const ahora = luxon.DateTime.local().toFormat('dd-MM-yyyy HH:mm:ss');
+
+
+
+	// Obtengo los valores de día, mes y año de nacimiento del usuario
 	const dia = diaNacimiento.value;
 	const mes = mesNacimiento.value;
 	const anio = anioNacimiento.value;
 
 
-// Obtengo el año actual
+	// Obtengo el año actual
 	const anioActual = new Date().getFullYear();
 
 
-// Calculo la edad del usuario
+	// Calculo la edad del usuario
 	const edadUsuario = anioActual - anio;
 
 
-// Si el usuario es mayor de 18 años, genero una contraseña aleatoria
+	// Si el usuario es mayor de 18 años, genero una contraseña aleatoria
 	if (edadUsuario >= edadMinima) {
 		let password = '';
 		for (let i = 0; i < longitudPassword; i++) {
 			password += Math.floor(Math.random() * 10);
 		}
 		// Muestro la contraseña generada en el elemento de resultado
-		resultado.innerHTML = `Su contraseña aleatoria es: <span class="password">${password}</span> Su fecha de nacimiento fue el ${dia}-${mes}-${anio} y usted tiene ${edadUsuario} años`;
+		resultado.innerHTML = `Su contraseña aleatoria es: <span class="password">${password}</span> Su fecha de nacimiento fue el ${dia}-${mes}-${anio} y usted tiene ${edadUsuario} años. <br><br><span class="ultimo-acceso"> Ultimo acceso el ${ahora}</span>`;
 		// Guardo la psw en sessionStorage
 		sessionStorage.setItem('password', password);
 	} else {
-		resultado.innerHTML = `Debe ser mayor de 18 años para generar una contraseña y usted tiene ${edadUsuario} años `;
+		resultado.innerHTML = `Debe ser mayor de 18 años para generar una contraseña y usted tiene ${edadUsuario} años. <br><br><span class="ultimo-acceso"> Ultimo acceso el ${ahora}</span> `;
 	}
 });
 
