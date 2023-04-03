@@ -96,6 +96,8 @@ document.getElementById("submitBtn").addEventListener("click", function () {
 //sub-pages/ciudades.html
 // ciudades.html
 
+
+
 // Variaciones a utilizar el FOREACH anterior
 
 /* for (const ciudad of ciudades) {
