@@ -1,11 +1,9 @@
 
 /*         // Agrego mensaje de Bienvida en el Header
-
         const usuarioInput = document.getElementById("usuario");
         const mensajeBienvenida = document.createElement("p");
         mensajeBienvenida.classList.add("mensaje-bienvenida");
         const encabezado = document.getElementsByTagName("header")[0]; // Obtengo el primer elemento del header
-
         // Escucho el evento de completar el nombre y pego em nombre y mensaje en el encabezado
         usuarioInput.addEventListener("input", () => {
             mensajeBienvenida.textContent = `Bienvenido(a), ${usuarioInput.value}!`;
@@ -32,24 +30,25 @@ function mostrarMensajeBienvenida() {
             const reader = new FileReader();
             reader.addEventListener("load", () => {
                 imagenUsuario.setAttribute("src", reader.result);
+
+                // Guardar la imagen en localStorage
+                localStorage.setItem("imagenUsuario", reader.result);
             });
             reader.readAsDataURL(imagenSeleccionada);
         });
 
         // Escucho el evento de completar el nombre y pego em nombre y mensaje en el encabezado
         usuarioInput.addEventListener("input", () => {
-
             if (usuarioInput.value) {
+                mensajeBienvenida.textContent = `Bienvenido(a), ${usuarioInput.value}!`;
+                encabezado.appendChild(mensajeBienvenida);
 
-            mensajeBienvenida.textContent = `Bienvenido(a), ${usuarioInput.value}!`;
-            encabezado.appendChild(mensajeBienvenida);
-            resolve();
-
-        } else {
-            reject("El campo de usuario está vacío");
-        }
-
-
+                // Guardar el mensaje de bienvenida en localStorage
+                localStorage.setItem("mensajeBienvenida", mensajeBienvenida.textContent);
+                resolve();
+            } else {
+                reject("El campo de usuario está vacío");
+            }
         });
     });
 }
@@ -61,6 +60,5 @@ mostrarMensajeBienvenida().then(() => {
 }).catch((error) => {
     console.log("Error al mostrar el mensaje de bienvenida:", error);
 
-
-
 }); 
+

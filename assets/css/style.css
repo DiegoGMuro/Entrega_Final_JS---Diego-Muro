@@ -71,7 +71,6 @@ h3 {
         grid-template-columns: repeat(1, 1fr);
         gap: 40px;
         text-align: center;
-
     }
 
     .widget1__img {
@@ -105,7 +104,6 @@ h3 {
         grid-template-columns: repeat(1, 1fr);
         gap: 40px;
         text-align: center;
-
     }
 
     .widget1__img {
@@ -115,7 +113,6 @@ h3 {
         margin: 10px;
     }
 }
-
 
 .alinear {
     text-align: center;
@@ -132,7 +129,6 @@ h3 {
     white-space: nowrap;
     color: #999;
     font-size: 15px;
-
 }
 
 .ciudad {
@@ -211,7 +207,6 @@ footer {
     background: linear-gradient(to right, rgb(146, 145, 144), rgb(59, 58, 58));
     font-weight: bold;
     margin-bottom: 0px;
-    
 }
 
 footer a {
@@ -235,9 +230,9 @@ footer a {
 }
 
 
-/*------ MODO OSCURO-----------------------------------------------------------------------------------------------------*/
+/*------ MODO OSCURO----------------------------------------------------*/
 
-body {
+/* body {
     background-color: rgb(233, 232, 169);
     color: #333;
     min-height: 100vh;
@@ -269,6 +264,7 @@ body {
     background-color: #1e4023;
     transform: translateY(0px);
 }
+ */
 
 
 /*-----------------------Leer mas leer menos --------------------------------------------------------------------------------*/
@@ -314,19 +310,18 @@ p {
     margin-right: 20px;
 }
 
-.letraChica{
+.letraChica {
     font-size: 12px;
-    color:#007bff;
+    color: #007bff;
     margin-bottom: 10px;
     font-weight: bold;
-
 }
 
-.pasajeros{
+.pasajeros {
     margin-bottom: 10px;
 }
 
-.diasDeEstancia{
+.diasDeEstancia {
     margin-bottom: 10px;
 }
 
@@ -379,7 +374,6 @@ input[type="number"] {
 }
 
 
-
 input[type="text"] {
     margin-left: 10px;
     padding: 5px;
@@ -407,7 +401,6 @@ button {
     font-weight: bold;
     cursor: pointer;
 }
-
 
 #carrito {
     margin-top: 50px;
@@ -462,13 +455,13 @@ th {
     background-color: #180755;
 }
 
-tr{
+tr {
     margin-bottom: 10px;
 }
 
 
 /* Estilos responsivos */
- @media (max-width: 767px) {
+@media (max-width: 767px) {
     table {
         font-size: 0.9rem;
     }
@@ -477,14 +470,15 @@ tr{
     td {
         padding: 0.5rem;
         font-size: 0.8rem;
-    } 
-    
-/* Ocultar la primera columna en modo responsivo */
-th:nth-child(1),
-td:nth-child(1) {
-    display: none;
+    }
+
+    /* Ocultar la primera columna en modo responsivo */
+    th:nth-child(1),
+    td:nth-child(1) {
+        display: none;
+    }
 }
-}
+
 
 /*------------------------------PASSWORDS-----------------------------------------------------------*/
 
@@ -497,7 +491,6 @@ td:nth-child(1) {
     text-align: center;
     margin-top: 15px;
     margin-left: 10px;
-
 }
 
 #resultado {
@@ -506,7 +499,7 @@ td:nth-child(1) {
 }
 
 .password {
-    font-size: 4.2em; 
+    font-size: 4.2em;
 }
 
 
@@ -522,7 +515,6 @@ td:nth-child(1) {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 70px;
-
 }
 
 #psw button[type="submit"] {
@@ -533,7 +525,6 @@ td:nth-child(1) {
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s ease;
-
 }
 
 #psw button[type="submit"]:hover {
@@ -549,7 +540,7 @@ td:nth-child(1) {
 
 .ultimo-acceso {
     font-size: 16px;
-    
+
 }
 
 /*-----------------Carousel de fotos----------------------------------------------------------------------*/
@@ -558,33 +549,33 @@ td:nth-child(1) {
     max-width: 800px;
     margin: 0 auto;
     overflow: hidden;
-    }
-    
-    .carousel {
+}
+
+.carousel {
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: transform 0.3s ease-in-out;
-    }
-    
-    .carousel-item {
+}
+
+.carousel-item {
     flex: 0 0 25%;
     margin: 0 4px;
-    }
-    
-    .carousel-item img {
+}
+
+.carousel-item img {
     width: 80%;
     height: auto;
     border-radius: 10px;
-    }
-    
-    .carousel-nav {
+}
+
+.carousel-nav {
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    }
-    
-    .carousel-nav-button {
+}
+
+.carousel-nav-button {
     background-color: #3a0ddd;
     border: none;
     padding: 10px 20px;
@@ -592,16 +583,14 @@ td:nth-child(1) {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
-    }
-    
-    .carousel-nav-button:hover {
+}
+
+.carousel-nav-button:hover {
     background-color: #db1c1c;
-    }
+}
 
 
 /*-----------------Imagen del seleccionable---------------------------------------*/
-
-/* Estilo para las imágenes */
 
 img {
     border: 2px solid gray;
@@ -633,18 +622,20 @@ div {
 }
 
 
+
 /*-------------- Espacio entre Resultado e Ingreso de contrasena-----------------------*/
 
 #resultado {
-margin-bottom: 7px; /* Reduzco el margen inferior del elemento con id "resultado" */
+    margin-bottom: 7px;
 }
 
 #psw {
-margin-top: 5px; /* Reduzco el margen superior del formulario con id "psw" */
+    margin-top: 5px;
 }
 
 
-/*-------------- Mensaje de Bienvenida-----------------------*/
+
+/*-------------- Mensaje de Bienvenida--------------------------------------------------*/
 
 .mensaje-bienvenida {
     font-size: 24px;
@@ -652,22 +643,20 @@ margin-top: 5px; /* Reduzco el margen superior del formulario con id "psw" */
     font-weight: bold;
     margin: 0vh;
     padding: 10px;
-    margin-right: 5vh ;
+    margin-right: 5vh;
     border-radius: 5px;
 }
 
 
-/*-------------- Sweet Alert-----------------------*/
+/*-------------- Sweet Alert-------------------------------------------------------*/
 
 .swal2-icon-custom {
     background-color: transparent !important;
-
 }
 
 .swal2-popup {
     background-color: lightblue;
 }
-
 
 @media screen and (max-width: 480px) {
     .swal2-popup {
@@ -680,7 +669,8 @@ margin-top: 5px; /* Reduzco el margen superior del formulario con id "psw" */
     }
 }
 
-/*-------------- Imagen de usuario-----------------------*/
+
+/*-------------- Imagen de usuario--------------------------------------------------------*/
 
 .mensaje-bienvenida {
     display: inline-block;
@@ -695,7 +685,6 @@ margin-top: 5px; /* Reduzco el margen superior del formulario con id "psw" */
     margin-right: 15px;
     transition: transform 0.3s ease-in-out;
     border: 2px solid #000000;
-
 }
 
 .imagen-usuario:hover {
@@ -706,5 +695,167 @@ margin-top: 5px; /* Reduzco el margen superior del formulario con id "psw" */
     display: block;
     margin: 0 auto;
     margin-top: 10px;
+}
 
+
+
+/*-------------- Modo oscuro-----------------------------------------------------------------*/
+
+body {
+    background-color: rgb(233, 232, 169);
+    color: #333;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.modoOscuro {
+    background-color: black;
+    color: #fff;
+}
+
+label {
+    /*display: block;*/
+    display: inline-block;
+    margin-top: 50px;
+
+    margin-right: 20px;
+}
+
+.modo-oscuro {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modo-oscuro label {
+    margin-left: auto;
+    text-align: right;
+    /*margin-right: 10px;*/
+    margin-right: 10px;
+    margin-top: 9px;
+}
+
+
+input[type="range"] {
+    width: 70px;
+    /* float: right; /* Alinea el input a la derecha */
+    /* margin-right: 50px; /* Agrega un margen derecho */
+}
+
+
+.modo-oscuro input[type="range"] {
+    float: right;
+    margin-right: 50px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    cursor: pointer;
+}
+
+
+input[type="range"]:focus {
+    outline: none;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-track {
+    background-color: #ccc;
+    height: 4px;
+    border-radius: 2px;
+    border: none;
+}
+
+input[type="range"]::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    cursor: pointer;
+}
+
+input[type="range"]::-ms-track {
+    background-color: transparent;
+    border-color: transparent;
+    border-width: 6px 0;
+    color: transparent;
+    height: 4px;
+}
+
+input[type="range"]::-ms-fill-lower {
+    background-color: #ccc;
+    border-radius: 2px;
+}
+
+input[type="range"]:focus::-ms-fill-lower {
+    background-color: #4CAF50;
+}
+
+input[type="range"]::-ms-fill-upper {
+    background-color: #ccc;
+    border-radius: 2px;
+}
+
+input[type="range"]:focus::-ms-fill-upper {
+    background-color: #4CAF50;
+
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background-color: #ccc;
+    height: 20px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* input[type="range"] {
+    float: right; 
+    margin-right: 50px; 
+    } */
+
+
+input[type="range"]:focus::-webkit-slider-runnable-track {
+    background-color: #4CAF50;
+}
+
+input[type="range"]::-moz-range-track {
+    background-color: #ccc;
+    height: 4px;
+    border-radius: 2px;
+    border: none;
+}
+
+input[type="range"]:focus::-moz-range-track {
+    background-color: #4CAF50
+}
+
+/*----------------------------Boton volver del 2do HTML--------------------------------------------------------------------------------*/
+
+.botonVolver {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: rgb(10, 148, 17);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
 }

@@ -18,25 +18,61 @@ let ciudades = [];
     }) */
 
 
-fetch(url)
+/*------------------------------------------------------------------------------------------------------------------------*/
+
+/* fetch(url)
     .then(response => {
         if (!response.ok) {
             throw new Error('La respuesta de la red no fue exitosa');
         }
         return response.json();
-
     })
     .then(data => {
         ciudades = data;
         cargarCiudades(ciudades);
-
     })
     .catch(error => {
         console.error('Hubo un problema con la operación de fetch:', error);
         //console.log(error);
-
     });
+function cargarCiudades(ciudades) {
+    ciudades.forEach(ciudad => {
+        const option = document.createElement('option');
+        option.text = `${ciudad.ciudad}`;
+        ciudadSelect.appendChild(option);
+    });
+tituloCiudad.appendChild(ciudadSelect);
+ciudadSelect.style.display = 'block';
+ciudadSelect.style.margin = '0 auto';
+} */
 
+/*------------------------------------------------------------------------*/
+
+
+function obtenerCiudades(url) {
+    return new Promise((resolve, reject) => {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    reject(new Error('La respuesta de la red no fue exitosa'));
+                }
+                resolve(response.json());
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
+}
+
+obtenerCiudades(url)
+    .then(data => {
+        ciudades = data;
+        cargarCiudades(ciudades);
+    })
+    .catch(error => {
+        console.error('Hubo un problema con la operación de fetch:', error);
+        //console.log(error);
+    });
 
 function cargarCiudades(ciudades) {
     ciudades.forEach(ciudad => {
@@ -44,19 +80,20 @@ function cargarCiudades(ciudades) {
         option.text = `${ciudad.ciudad}`;
         ciudadSelect.appendChild(option);
     });
-//}
-tituloCiudad.appendChild(ciudadSelect);
-ciudadSelect.style.display = 'block';
-ciudadSelect.style.margin = '0 auto';
+    tituloCiudad.appendChild(ciudadSelect);
+    ciudadSelect.style.display = 'block';
+    ciudadSelect.style.margin = '0 auto';
 }
 
 
 // Se redirige a otro HTML con Galeria de fotos de ciudades
 document.getElementById("submitBtn").addEventListener("click", function () {
-    window.location.assign("sub-pages/ciudades.html");
+    window.location.assign("ciudades.html");
 
 });
 
+
+// Variaciones a utilizar el FOREACH anterior
 
 /* for (const ciudad of ciudades) {
     const option = document.createElement('option');
@@ -103,21 +140,22 @@ psw.addEventListener("submit", function (event) {
             }
         });
 
+
         // Condiciones de incrementos por estadia
-/*         const incremEstadia = (dias) => {
-            if (dias >= 1 && dias <= 7) {
-                return 0.4;
-            } else if (dias >= 8 && dias <= 14) {
-                return 0.3;
-            } else if (dias >= 15 && dias <= 21) {
-                return 0.2;
-            } else if (dias >= 22 && dias <= 28) {
-                return 0.1;
-            } else {
-                return 0;
-            }
-        }
- */
+        /*         const incremEstadia = (dias) => {
+                    if (dias >= 1 && dias <= 7) {
+                        return 0.4;
+                    } else if (dias >= 8 && dias <= 14) {
+                        return 0.3;
+                    } else if (dias >= 15 && dias <= 21) {
+                        return 0.2;
+                    } else if (dias >= 22 && dias <= 28) {
+                        return 0.1;
+                    } else {
+                        return 0;
+                    }
+                }
+         */
 
         // Condiciones de incrementos por estadia
         const incremEstadia = (dias) => {
@@ -127,6 +165,7 @@ psw.addEventListener("submit", function (event) {
                         : dias >= 22 && dias <= 28 ? 0.1
                             : 0;
         }
+
 
         // Agrego al carrito - calculo valores - transformo en JSON y guardo con SetItem
         let carrito = [];
@@ -145,7 +184,6 @@ psw.addEventListener("submit", function (event) {
             updatecarrito();
         };
 
-
         // Actualizo carrito y armo la tabla
         const updatecarrito = () => {
             const carritoDiv = document.getElementById("carrito");
@@ -160,50 +198,6 @@ psw.addEventListener("submit", function (event) {
             carritoDiv.innerHTML = tablaConTotal;
         };
 
-
-/*-----------------------------------*/
-/*         const comprarCarrito = () => {
-            const botonComprar = document.getElementById("comprar");
-            updatecarrito();
-            if (carrito.length > 0) {
-                botonComprar.addEventListener("click", function () {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Gracias por su cotizacion!!',
-                        html: 'Usted será redirigido a nuestra plataforma de pagos',
-                        footer: 'Aceptamos Visa, Mastercard y American Express',
-                        confirmButtonText: 'Aceptar',
-                        showCancelButton: true,
-                        cancelButtonText: 'Cancelar',
-                        iconHtml: '<img src="icon-256x256.png" style="width: 80px; height: 80px; border: none;">',
-                        customClass: {
-                            icon: 'swal2-icon-custom',
-                            background: 'swal2-popup'
-                        }
-                    }).then(function (result) {
-                        if (result.isConfirmed) {
-                            window.location.href = 'https://www.mercadopago.com.ar';
-                        }
-                    });
-                });
-                //console.log("Compra realizada exitosamente");
-            } else {
-                botonComprar.addEventListener("click", function () {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Error!',
-                        text: 'Tu carrito está vacío',
-                        confirmButtonText: 'Aceptar',
-                        customClass: {
-                            icon: 'swal2-icon-custom',
-                            background: 'swal2-popup'
-                        }
-                    });
-                });
-                //console.log("No hay elementos en el carrito para comprar");
-            }
-        }; */
-/*--------------------------------------------------------------------------*/        
 
         const comprarCarrito = () => {
             const botonComprar = document.getElementById("comprar");
@@ -221,36 +215,6 @@ psw.addEventListener("submit", function (event) {
                 });
             }
         };
-
-
-
-/*         const mostrarMensajeDeAgradecimiento = () => {
-            return new Promise((resolve) => {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Gracias por su cotizacion!!',
-                    html: 'Usted será redirigido a nuestra plataforma de pagos',
-                    footer: 'Aceptamos Visa, Mastercard y American Express',
-                    confirmButtonText: 'Aceptar',
-                    showCancelButton: true,
-                    cancelButtonText: 'Cancelar',
-                    iconHtml: '<img src="icon-256x256.png" style="width: 80px; height: 80px; border: none;">',
-                    customClass: {
-                        icon: 'swal2-icon-custom',
-                        background: 'swal2-popup'
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        resolve();
-                    } else {
-                        throw new Error('La compra fue cancelada');
-                    }
-                });
-            });
-        };
- */
-
-
 
         const mostrarMensajeDeAgradecimiento = () => {
             return new Promise((resolve, reject) => {
@@ -281,22 +245,6 @@ psw.addEventListener("submit", function (event) {
         };
 
 
-
-
-
-
-
-/* 
-        const redirigirAPagos = () => {
-            return new Promise((resolve) => {
-                window.location.href = 'https://www.mercadopago.com.ar';
-                resolve();
-            });
-        };
- */
-
-
-        
         const redirigirAPagos = () => {
             return new Promise((resolve, reject) => {
                 try {
@@ -307,10 +255,6 @@ psw.addEventListener("submit", function (event) {
                 }
             });
         };
-
-
-
-
 
 
         const mostrarMensajeDeError = () => {
@@ -333,9 +277,6 @@ psw.addEventListener("submit", function (event) {
                 });
             });
         };
-
-
-
 
 
         // Finalizo la cotizacion y limpio la tabla
@@ -378,7 +319,6 @@ psw.addEventListener("submit", function (event) {
         document.getElementById("comprar").addEventListener("click", comprarCarrito);
 
 
-
         // Evento para eliminar ciudades de la tabla renderizada
         document.addEventListener("click", (event) => {
             if (event.target.classList.contains("eliminar-ciudad")) {
@@ -413,6 +353,7 @@ psw.addEventListener("submit", function (event) {
                 })
             }
         });
+
 
         // Obtener el carrito guardado en localStorage, si existe
         const carritoGuardado = localStorage.getItem("carrito");
@@ -454,4 +395,8 @@ psw.addEventListener("submit", function (event) {
 });
 
 
+// Se vuelve a pantalla general
+document.getElementById("btnVolver").addEventListener("click", function () {
+    window.location.assign("index.html");
 
+});

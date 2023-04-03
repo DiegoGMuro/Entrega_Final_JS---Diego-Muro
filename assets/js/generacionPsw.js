@@ -8,7 +8,6 @@ const formulario = document.createElement('form');
 formulario.id = 'formulario';
 document.body.appendChild(formulario);
 
-
 // Creo campos de día, mes y año para la fecha de nacimiento
 const diaNacimiento = document.createElement('input');
 diaNacimiento.type = 'number';
@@ -34,44 +33,34 @@ anioNacimiento.min = 1900;
 anioNacimiento.max = new Date().getFullYear();
 anioNacimiento.required = true;
 
-
 // Creo el botón de enviar
 const enviar = document.createElement('button');
 enviar.type = 'submit';
 enviar.innerHTML = 'Ingrese fecha Nacim y genere PSW';
 
-
 // Agrego los campos del formulario
 formulario.append(diaNacimiento, mesNacimiento, anioNacimiento, enviar);
 
-
 // Obtengo el elemento del HTML que mostrara el resultado
 const resultado = document.getElementById('resultado');
-
 
 // Agrego evento del formulario cuando lo envio
 formulario.addEventListener('submit', function (event) {
 	event.preventDefault(); // Evito el envio del formulario por defecto
 
-
 	// Obtengo la fecha y hora actual en el formato deseado
 	const ahora = luxon.DateTime.local().toFormat('dd-MM-yyyy HH:mm:ss');
-
-
 
 	// Obtengo los valores de día, mes y año de nacimiento del usuario
 	const dia = diaNacimiento.value;
 	const mes = mesNacimiento.value;
 	const anio = anioNacimiento.value;
 
-
 	// Obtengo el año actual
 	const anioActual = new Date().getFullYear();
 
-
 	// Calculo la edad del usuario
 	const edadUsuario = anioActual - anio;
-
 
 	// Si el usuario es mayor de 18 años, genero una contraseña aleatoria
 	if (edadUsuario >= edadMinima) {
