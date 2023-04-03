@@ -88,10 +88,13 @@ function cargarCiudades(ciudades) {
 
 // Se redirige a otro HTML con Galeria de fotos de ciudades
 document.getElementById("submitBtn").addEventListener("click", function () {
-    window.location.assign("ciudades.html");
+    window.location.assign("sub-pages/ciudades.html");
 
 });
 
+
+//sub-pages/ciudades.html
+// ciudades.html
 
 // Variaciones a utilizar el FOREACH anterior
 
