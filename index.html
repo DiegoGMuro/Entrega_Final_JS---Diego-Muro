@@ -30,16 +30,16 @@
 
 <body>
 
-<!--     <div class="modo-oscuro">
+    <!--     <div class="modo-oscuro">
         <button id="modo">Modo oscuro</button>
     </div>
  -->
 
 
-<div class="modo-oscuro">
-    <label for="slider">Cambiar modo</label>
-    <input type="range" id="slider" min="0" max="1" step="1">
-</div>
+    <div class="modo-oscuro">
+        <label for="slider">Cambiar modo</label>
+        <input type="range" id="slider" min="0" max="1" step="1">
+    </div>
 
 
     <section class="color_letra">
@@ -154,23 +154,29 @@
         </span>
     </p>
     <button class="botonLeerMas" id="botonLeerMas">Leer Mas</button>
+    <br>
+
+    <section class="alinear_destino">
+        <button type="button" id="submitBtn">Ir a Galeria de fotos</button>
+    </section>
 
     <br>
 
+    <h2 class="alinear_destino">Temperatura de ciudades:</h2>
 
+    <br>
 
-    <section class="alinear_destino">
-        <button type="button" id="submitBtn" >Ir a Galeria de fotos</button>
-    </section>
+    <div id="temperatura" class="container-con-margen"></div>
 
-
-
+    <br>
+    <br>
 
     <div>
         <h2 class="alinear_destino">Destinos:</h2>
         <section class="contenido">
             <div>
-                <img src="assets/img-inicio/Amsterdam1.jpg" alt="Amsterdam" class="widget1__img imagen-atractiva" id="img-amsterdam">
+                <img src="assets/img-inicio/Amsterdam1.jpg" alt="Amsterdam" class="widget1__img imagen-atractiva"
+                    id="img-amsterdam">
                 <br>
                 <br>
                 <span class="preciodesde">Precios desde AR$500.000 (*)</span>
@@ -181,7 +187,8 @@
                 <h5 class="description">Salidas a partir del 1ro de Marzo de 2023</h5>
             </div>
             <div>
-                <img src="assets/img-inicio/barcelona2.jpg" alt="Barcelona" class="widget1__img imagen-atractiva" id="img-barcelona">
+                <img src="assets/img-inicio/barcelona2.jpg" alt="Barcelona" class="widget1__img imagen-atractiva"
+                    id="img-barcelona">
                 <br>
                 <br>
                 <span class="preciodesde">Precios desde AR$450.000 (*)</span>
@@ -192,7 +199,8 @@
                 <h5 class="description">Salidas a partir del 1ro de Marzo de 2023</h5>
             </div>
             <div>
-                <img src="assets/img-inicio/berlin1.jpg" alt="Berlin" class="widget1__img imagen-atractiva" id="img-berlin">
+                <img src="assets/img-inicio/berlin1.jpg" alt="Berlin" class="widget1__img imagen-atractiva"
+                    id="img-berlin">
                 <br>
                 <br>
                 <span class="preciodesde">Precios desde AR$600.000 (*)</span>
@@ -214,7 +222,8 @@
                 <h5 class="description">Salidas a partir del 1ro de Marzo de 2023</h5>
             </div>
             <div>
-                <img src="assets/img-inicio/londres5.webp" alt="Londres" class="widget1__img imagen-atractiva" id="img-londres">
+                <img src="assets/img-inicio/londres5.webp" alt="Londres" class="widget1__img imagen-atractiva"
+                    id="img-londres">
                 <br>
                 <br>
                 <span class="preciodesde">Precios desde AR$700.000 (*)</span>
@@ -225,7 +234,8 @@
                 <h5 class="description">Salidas a partir del 1ro de Marzo de 2023</h5>
             </div>
             <div>
-                <img src="assets/img-inicio/paris3.jpg" alt="Paris" class="widget1__img imagen-atractiva" id="img-paris">
+                <img src="assets/img-inicio/paris3.jpg" alt="Paris" class="widget1__img imagen-atractiva"
+                    id="img-paris">
                 <br>
                 <br>
                 <span class="preciodesde">Precios desde AR$600.000 (*)</span>
@@ -245,6 +255,7 @@
     <script src="./assets/js/scriptPrincipal.js"></script>
     <script src="./assets/js/mensajeBienvenida.js"></script>
     <script src="./assets/js/redirVideos.js"></script>
+    <script src="./assets/js/temperaturaApi.js"></script>
 
 </body>
 

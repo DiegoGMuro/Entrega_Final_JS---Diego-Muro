@@ -859,3 +859,19 @@ input[type="range"]:focus::-moz-range-track {
     text-decoration: none;
     border-radius: 5px;
 }
+
+/*-----------------------Estilos de la API externa--------------------------------------------------*/
+
+
+.container-con-margen {
+    text-align: center;
+    margin-left: 40px;
+    margin-top: 0;
+    width: 100%;
+}
+
+.container-con-margen p {
+    font-weight: bold;
+    color: rgb(35, 148, 177);
+    display: inline-block;
+}
