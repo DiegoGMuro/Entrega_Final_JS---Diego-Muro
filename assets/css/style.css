@@ -230,43 +230,6 @@ footer a {
 }
 
 
-/*------ MODO OSCURO----------------------------------------------------*/
-
-/* body {
-    background-color: rgb(233, 232, 169);
-    color: #333;
-    min-height: 100vh;
-}
-
-.modoOscuro {
-    background-color: black;
-    color: #fff;
-}
-
-#modo {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    font-size: 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 150px;
-}
-
-#modo:hover {
-    background-color: #3e8e41;
-    transform: translateY(-2px);
-}
-
-#modo:active {
-    background-color: #1e4023;
-    transform: translateY(0px);
-}
- */
-
-
 /*-----------------------Leer mas leer menos --------------------------------------------------------------------------------*/
 
 .textoLogin {
@@ -503,7 +466,6 @@ tr {
 }
 
 
-
 #psw label {
     font-size: 18px;
     margin-bottom: 10px;
@@ -737,8 +699,7 @@ label {
 
 input[type="range"] {
     width: 70px;
-    /* float: right; /* Alinea el input a la derecha */
-    /* margin-right: 50px; /* Agrega un margen derecho */
+    
 }
 
 
@@ -823,12 +784,6 @@ input[type="range"]::-webkit-slider-runnable-track {
     border-radius: 10px;
     border: none;
 }
-
-/* input[type="range"] {
-    float: right; 
-    margin-right: 50px; 
-    } */
-
 
 input[type="range"]:focus::-webkit-slider-runnable-track {
     background-color: #4CAF50;

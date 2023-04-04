@@ -1,13 +1,4 @@
 
-/* function redireccionVideo(videoUrl, abrirNuevaVentana) {
-    if (abrirNuevaVentana) {
-        window.open(videoUrl);
-    } else {
-        window.location.href = videoUrl;
-    }
-} */
-
-
 // Creo una función que redirecciona a la página web del video
 function redireccionVideo(videoUrl, abrirNuevaVentana) {
 abrirNuevaVentana ? window.open(videoUrl) : window.location.href = videoUrl;

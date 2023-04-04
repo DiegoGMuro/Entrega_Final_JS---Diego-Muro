@@ -10,44 +10,6 @@ const ciudadSelect = document.createElement('select');
 const url = "assets/js/ciudades.json"
 let ciudades = [];
 
-/* fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        ciudades = data;
-        cargarCiudades(ciudades);
-    }) */
-
-
-/*------------------------------------------------------------------------------------------------------------------------*/
-
-/* fetch(url)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('La respuesta de la red no fue exitosa');
-        }
-        return response.json();
-    })
-    .then(data => {
-        ciudades = data;
-        cargarCiudades(ciudades);
-    })
-    .catch(error => {
-        console.error('Hubo un problema con la operación de fetch:', error);
-        //console.log(error);
-    });
-function cargarCiudades(ciudades) {
-    ciudades.forEach(ciudad => {
-        const option = document.createElement('option');
-        option.text = `${ciudad.ciudad}`;
-        ciudadSelect.appendChild(option);
-    });
-tituloCiudad.appendChild(ciudadSelect);
-ciudadSelect.style.display = 'block';
-ciudadSelect.style.margin = '0 auto';
-} */
-
-/*------------------------------------------------------------------------*/
-
 
 function obtenerCiudades(url) {
     return new Promise((resolve, reject) => {
@@ -93,30 +55,6 @@ document.getElementById("submitBtn").addEventListener("click", function () {
 });
 
 
-//sub-pages/ciudades.html
-// ciudades.html
-
-
-
-// Variaciones a utilizar el FOREACH anterior
-
-/* for (const ciudad of ciudades) {
-    const option = document.createElement('option');
-    option.text = `${ciudad.ciudad}`;
-    ciudadSelect.appendChild(option);
-} */
-
-/* const ciudadSelect = document.createElement('select');
-for (let index = 0; index < ciudades.length; index++) {
-    ciudadSelect.innerHTML += `<option value="${ciudades[index].ciudad}">${ciudades[index].ciudad}</option>`;
-}*/
-
-/*  const ciudadSelect = document.createElement('select');
-for (const ciudad of ciudades) {
-    ciudadSelect.innerHTML += `<option value="${ciudad.ciudad}">${ciudad.ciudad}</option>`;
-} */
-
-
 // Se renderiza la imagen de la ciudad seleccionada 
 const contenedorImagen = document.createElement('div');
 tituloCiudad.appendChild(contenedorImagen);
@@ -145,22 +83,6 @@ psw.addEventListener("submit", function (event) {
             }
         });
 
-
-        // Condiciones de incrementos por estadia
-        /*         const incremEstadia = (dias) => {
-                    if (dias >= 1 && dias <= 7) {
-                        return 0.4;
-                    } else if (dias >= 8 && dias <= 14) {
-                        return 0.3;
-                    } else if (dias >= 15 && dias <= 21) {
-                        return 0.2;
-                    } else if (dias >= 22 && dias <= 28) {
-                        return 0.1;
-                    } else {
-                        return 0;
-                    }
-                }
-         */
 
         // Condiciones de incrementos por estadia
         const incremEstadia = (dias) => {
